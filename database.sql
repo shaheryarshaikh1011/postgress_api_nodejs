@@ -3,7 +3,6 @@ CREATE DATABASE empdebt;
 CREATE TABLE dept(
     dept_id INT PRIMARY KEY,
     dept_name VARCHAR(20) NOT NULL,
-    dept_location VARCHAR(20) NOT NULL,
     dept_count INT DEFAULT 0
 );
 
@@ -31,8 +30,8 @@ as $func$
 begin
     update dept 
        set dept_count = dept_count+1
-     where dept_id = emp.emp_deptid
-     FROM emp;
+    FROM emp
+     where dept_id = emp.emp_deptid;
     return NULL;
 end;
 $func$ language plpgsql;
