@@ -4,7 +4,7 @@ const app = express();
 //uncomment below line to use on localhost
 //const pool = require("./db");
 
-
+//for heroku postgressql connection 
 const { Pool } = require('pg');
 
 const pool = new Pool({
@@ -21,7 +21,7 @@ app.use(express.json()) //req.body
 
 //routes//
 
-
+//to get all department details
 app.get("/api/dept",async (req,res)=>{
     try{
         const alldept = await pool.query("SELECT * FROM dept");
@@ -33,6 +33,7 @@ app.get("/api/dept",async (req,res)=>{
     }
 })
 
+//to get all employee details
 app.get("/api/emp",async (req,res)=>{
     try{
         const allemp = await pool.query("SELECT * FROM emp");
@@ -44,6 +45,8 @@ app.get("/api/emp",async (req,res)=>{
     }
 })
 
+
+//to get data about specific employee
 app.get("/api/alldata/:id",async(req,res)=>
 {
     try{
@@ -57,7 +60,7 @@ app.get("/api/alldata/:id",async(req,res)=>
     }
 })
 
-// create a dept data
+// create a department data
 app.post("/api/dept", async(req,res)=>{    
     // Grab data from http request
     const data = {
@@ -87,7 +90,7 @@ app.post("/api/dept", async(req,res)=>{
     }
 })
 
-// create emp data
+// create employeee data
 app.post("/api/emp", async(req,res)=>{    
     // Grab data from http request
     const data = {

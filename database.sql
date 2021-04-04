@@ -17,13 +17,6 @@ CREATE TABLE emp(
 );
 
 
-
-
-
-
-
-
-
 create or replace function update_count() 
   returns trigger  
 as $func$
