@@ -2,8 +2,17 @@ const express = require("express");
 const app = express();
 
 
-const pool = require("./db");
 
+const { Pool } = require('pg');
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+Pool.connect();
 
 app.use(express.json()) //req.body
 
