@@ -12,7 +12,7 @@ const pool = new Pool({
   }
 });
 
-Pool.connect();
+pool.connect();
 
 app.use(express.json()) //req.body
 
@@ -129,6 +129,6 @@ app.post("/api/emp", async(req,res)=>{
 
 
 
-app.listen(3000,()=>{
+app.listen(3000||process.env.PORT,()=>{
     console.log("Server is running on port 3000");
 })
