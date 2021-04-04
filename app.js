@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+//uncomment below line to use on localhost
+//const pool = require("./db");
 
 
 const { Pool } = require('pg');
@@ -129,6 +131,8 @@ app.post("/api/emp", async(req,res)=>{
 
 
 
-app.listen(3000||process.env.PORT,()=>{
-    console.log("Server is running on port 3000");
-})
+var server_port = process.env.YOUR_PORT || process.env.PORT || 80;
+var server_host = process.env.YOUR_HOST || '0.0.0.0';
+server.listen(server_port, server_host, function() {
+    console.log('Listening on port %d', server_port);
+});
