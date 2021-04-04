@@ -48,7 +48,7 @@ app.get("/api/alldata/:id",async(req,res)=>
 {
     try{
         const {id} = req.params;
-        const alldata = await pool.query("SELECT emp_id, emp_name, emp_gender, emp_location, emp_doj, dept_name,dept_location FROM dept INNER JOIN emp ON dept_id = emp_deptid WHERE emp_id=$1",[id]);
+        const alldata = await pool.query("SELECT emp_id, emp_name, emp_gender, emp_location, emp_doj, dept_name FROM dept INNER JOIN emp ON dept_id = emp_deptid WHERE emp_id=$1",[id]);
         res.json(alldata.rows[0]);
     }
     catch(err)
@@ -63,19 +63,18 @@ app.post("/api/dept", async(req,res)=>{
     const data = {
         dept_id: req.body.dept_id,
         dept_name: req.body.dept_name,
-        dept_location : req.body.dept_location
+
     };
 
     const values = [
         data.dept_id,
-        data.dept_name,
-        data.dept_location
+        data.dept_name
     ];
     
     try{
          
         
-         const newdept = await pool.query("INSERT INTO dept (dept_id,dept_name,dept_location) VALUES ($1,$2,$3) RETURNING *",
+         const newdept = await pool.query("INSERT INTO dept (dept_id,dept_name) VALUES ($1,$2) RETURNING *",
          values
          );
          
