@@ -30,8 +30,7 @@ as $func$
 begin
     update dept 
        set dept_count = dept_count+1
-    FROM emp
-     where dept_id = emp.emp_deptid;
+     where dept_id = new.emp_deptid;
     return NULL;
 end;
 $func$ language plpgsql;
@@ -41,7 +40,7 @@ $func$ language plpgsql;
 
 create trigger inc_counter
        after insert on emp
+       FOR EACH ROW
        execute procedure update_count();
-
 
 
